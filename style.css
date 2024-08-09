@@ -29,3 +29,7 @@
 .game-board div {
     border: 3px solid black;
 }
+
+.off {
+    pointer-events: none;
+}
