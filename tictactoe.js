@@ -1,10 +1,13 @@
 
 //--------------------------------------------------------------------------->>
 /**
- * 
- * @returns 
+ * The Play class represents a Gameboard object and two Player objects. This class controls the flow of game 
+ * as inputs are received. These inputs represent a game button or one of the nine cells that make up the play area. 
+ * If the input is a cell, the turn order is checked, and the current player id and cell selected is sent to the Gameboard object. 
+ * If a game ending input is received, a result of the current game is returned.
+ * @return some generic game ending message 
  */
-function playGame() {
+function Play() {
 
     let board = Gameboard();
     const playerX = Player("Player X name", 0);
@@ -12,11 +15,20 @@ function playGame() {
     let turnOrder = [true, false];
 
     return {
+        /**
+         * The input method receives (row, col) of the selected cell. The move 
+         * is passed to the Gameboard class. 
+         * If the players id is returned from markBoard, they won. 
+         * If -1 is returned, the game ended in a tie.
+         * 
+         * @param {*} row - The selected cell row 
+         * @param {*} col - The selected cell column 
+         */
         input: function(row, col) {
 
             if (turnOrder[0] == true) {
-                let currentMove = board.markBoard(row, col, 0);
-                if (currentMove == 0) {
+                let currentPlayer = board.markBoard(row, col, 0);
+                if (currentPlayer == 0) {
                     this.announceWinner(id);
                 }
                 turnOrder[0] = false;
@@ -26,9 +38,11 @@ function playGame() {
                 let currentMove = board.markBoard(row, col, 1);
                 if (currentMove == 1) {
                     this.announceWinner(id);
+                    // Send some return statement with the announcement
                 }
                 else if(currentMove == -1) {
                     this.announceTie();
+                    // Send some return statement with the announcement
                 }
                 turnOrder[1] = false;
                 turnOrder[0] = true;          
@@ -52,14 +66,15 @@ function playGame() {
 
 //--------------------------------------------------------------------------->>
 /**
+ * The Gameboard class is responsible for marking the board when a game input is received. The board array represents a 
+ * 3x3 matrix. The totalTurns variable is used to check for the game ending tie condition.  
+ * @returns The board object
+ * @returns The inputs id if the call to markBoard resulted in a winning contion or if the game ended in a tie. 
  * 
- * @returns 
  */
 function Gameboard() {
    
     let totalTurns = 0;
-    const rows = 3;
-    const columns = 3;
     let board = [
         [-1, -1, -1],
         [-1, -1, -1],
@@ -69,18 +84,20 @@ function Gameboard() {
     // Public API
     return {
         /**
-         * 
-         * @returns 
+         *  
+         * @returns The current game board
          */
         getBoard: function() {
             return board
         },
         /**
-         * 
-         * @param {*} row 
-         * @param {*} col 
-         * @param {*} id 
-         * @returns 
+         * The markBoard method is responsible for keeping track of what cells have been selected, and
+         * if a tie or winning condtion resulted from the input. 
+         * @param {*} row - The selected cell row
+         * @param {*} col - The selected cell column
+         * @param {*} id - id of player attached to chosen cell 
+         * @returns id of player if winning condition is met
+         * @returns -1 if the game ended in a tie
          */
         markBoard: function(row, col, id) {
             board[row][col] = id;
