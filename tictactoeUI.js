@@ -1,5 +1,7 @@
 let game = playGame();
 
+let turn = 0;
+
 const startButton = document.querySelector(".start-button");
 const resetButton = document.querySelector(".reset-button");
 const gameButtons = document.querySelectorAll("#cell");
@@ -16,10 +18,20 @@ function boardInput(event) {
     let col = event.target.getAttribute("data-colIndex");
     
     game.input(row, col);
+    turn++;
     
     for (let cell of gameButtons) {
         if (cell == event.target) {
             cell.removeEventListener("click", boardInput, false);
+            event.target.setAttribute('id', "off");
+            if (turn % 2 == 1) {
+                // X
+                console.log("X")
+            }
+            else {
+                // O
+                console.log("O")
+            }
         }
     }
 }
