@@ -1,10 +1,10 @@
 
 //--------------------------------------------------------------------------->>
 /**
- * The Play class represents a Gameboard object and two Player objects. This class controls the flow of game 
- * as inputs are received. These inputs represent a game button or one of the nine cells that make up the play area. 
- * If the input is a cell, the turn order is checked, and the current player id and cell selected is sent to the Gameboard object. 
- * If a game ending input is received, a result of the current game is returned.
+ * The Play class is responsible for controlling the flow of the game. The input method receives coordinates
+ * that indicate which of the nine cells was selected. The inputs represent a game button or one of the nine cells that make up the play area. 
+ * If playControl receives an input, the turn order is first checked, and then the current player id and cell s sent to Gameboard. 
+ * 
  * @return some generic game ending message 
  */
 function Play() {
@@ -24,10 +24,10 @@ function Play() {
          * @param {*} row - The selected cell row 
          * @param {*} col - The selected cell column 
          */
-        input: function(row, col) {
+        playControl: function(row, col) {
 
             if (turnOrder[0] == true) {
-                let currentPlayer = board.markBoard(row, col, 0);
+                let currentPlayer = board.markCell(row, col, 0);
                 if (currentPlayer == 0) {
                     this.announceWinner(id);
                 }
@@ -35,7 +35,7 @@ function Play() {
                 turnOrder[1] = true;
             }
             else if (turnOrder[1] == true) {
-                let currentMove = board.markBoard(row, col, 1);
+                let currentMove = board.markCell(row, col, 1);
                 if (currentMove == 1) {
                     this.announceWinner(id);
                     // Send some return statement with the announcement
@@ -60,7 +60,8 @@ function Play() {
         annountTie: function() {
             // return results to game interface
             console.log("Generic tie message")
-        }
+        },
+
     }
 }
 
@@ -91,15 +92,15 @@ function Gameboard() {
             return board
         },
         /**
-         * The markBoard method is responsible for keeping track of what cells have been selected, and
-         * if a tie or winning condtion resulted from the input. 
+         * The markCell method is responsible for keeping track of what cells have been selected, and
+         * if a tie or winning condtion resulted from the given argument. 
          * @param {*} row - The selected cell row
          * @param {*} col - The selected cell column
          * @param {*} id - id of player attached to chosen cell 
          * @returns id of player if winning condition is met
          * @returns -1 if the game ended in a tie
          */
-        markBoard: function(row, col, id) {
+        markCell: function(row, col, id) {
             board[row][col] = id;
             totalTurns++;
 
