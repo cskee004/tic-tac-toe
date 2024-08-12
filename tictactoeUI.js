@@ -56,6 +56,10 @@ function TicTacToe(event) {
         const state = event.target.getAttribute("class");
 
         if (state == "start-buton") {
+            const playerOne = document.querySelector("#p1-name").value;
+            const playerTwo = document.querySelector("#p2-name").value;
+            console.log({playerOne});
+            console.log({playerTwo});
             game = Play();
             turn = 0;
         }

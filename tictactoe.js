@@ -7,11 +7,11 @@
  * 
  * @return some generic game ending message 
  */
-function Play() {
+function Play(p1, p2) {
 
     let board = Gameboard();
-    const playerX = Player("Player X name", 0);
-    const playerO = Player("Player O name", 1);
+    const playerX = Player(p1, 0);
+    const playerO = Player(p2, 1);
     let turnOrder = [true, false];
 
     return {
