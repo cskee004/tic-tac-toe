@@ -26,10 +26,19 @@
    
 }
 
-.game-board div {
+.game-board .cell {
     border: 3px solid black;
+    font-size: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .off {
     pointer-events: none;
+}
+
+.game-board, .cell {
+    
 }

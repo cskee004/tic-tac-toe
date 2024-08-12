@@ -1,22 +1,27 @@
-const start = TicTacToe()
+const resetButton = document.querySelector(".reset-button");
 const startButton = document.querySelector(".start-button");
-startButton.addEventListener("click", start.gameState, false);
-
+resetButton.addEventListener("click", TicTacToe, false);
+startButton.addEventListener("click", TicTacToe, false);
 
 /**
  * 
- * @param {*} event - 
+ * 
  */
 function TicTacToe(event) {
+    
+    let p1 = document.querySelector("#p1-name").value;
+    let p2 = document.querySelector("#p2-name").value;
+    document.getElementById("p1-name").value = '';
+    document.getElementById("p2-name").value = '';
+    console.log(p1, p2);
 
-    //const startButton = document.querySelector(".start-button");
-    const resetButton = document.querySelector(".reset-button");
-    const gameButtons = document.querySelectorAll("#cell");
+    let game = Play(p1, p2);
+    let turn = 0;
 
-    //startButton.addEventListener("click", gameState, false);
-    resetButton.addEventListener("click", gameReset, false);
+    const gameButtons = document.querySelectorAll(".cell");
     gameButtons.forEach(element => {
         element.addEventListener("click", boardInput, false);
+        element.setAttribute('id', "on");
     });
     //--------------------------------------------------------------------------->>
     /**
@@ -28,59 +33,29 @@ function TicTacToe(event) {
     
         const row = event.target.getAttribute("data-rowIndex");
         const col = event.target.getAttribute("data-colIndex");
-
-        let currentGame = this.createGame;
-        
-        currentGame.playControl(row, col);
+        let results = game.playControl(row, col);
         turn++;
+
+        if (results == "Game over") {
+            console.log("Game over signal");
+            // Prompt with results
+            // Once clicked, reload page. 
+
+        }
         
         for (let cell of gameButtons) {
             if (cell == event.target) {
                 cell.removeEventListener("click", boardInput, false);
                 event.target.setAttribute('id', "off");
                 if (turn % 2 == 1) {
-                    // X
                     event.target.innerHTML = "X";
                 }
                 else {
-                    // O
                     event.target.innerHTML = "O";
                 }
             }
         }
     }
-
-    //--------------------------------------------------------------------------->>
-    /**
-     * 
-     * @param {*} event Represents the start or reset button being clicked by the user.
-     */
-    function gameStart(event) {
-        
-        const playerOne = document.querySelector("#p1-name").value;
-        const playerTwo = document.querySelector("#p2-name").value;
-        console.log({playerOne});
-        console.log({playerTwo});
-        let game = this.createGame;
-        turn = 0;     
-    }
-
-    function gameReset(event) {
-        game = null;
-        turn = 0;
-    }
-
-    return {
-        createGame: function() {
-            let game = Play();
-            return game;
-        },
-
-        setGame: function(game) {
-            this.game = game;
-        }
-    }
-
 }
 
 

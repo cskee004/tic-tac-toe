@@ -7,12 +7,13 @@
  * 
  * @return some generic game ending message 
  */
-function Play(p1, p2) {
+function Play(xName, oName) {
 
     let board = Gameboard();
-    const playerX = Player(p1, 0);
-    const playerO = Player(p2, 1);
+    const playerX = Player(xName, 0);
+    const playerO = Player(oName, 1);
     let turnOrder = [true, false];
+    let players = [playerX, playerO];
 
     return {
         /**
@@ -28,22 +29,27 @@ function Play(p1, p2) {
 
             if (turnOrder[0] == true) {
                 let currentPlayer = board.markCell(row, col, 0);
+                
                 if (currentPlayer == 0) {
                     this.announceWinner(id);
+                    return "Game over";
                 }
+                
                 turnOrder[0] = false;
                 turnOrder[1] = true;
             }
             else if (turnOrder[1] == true) {
                 let currentMove = board.markCell(row, col, 1);
+                
                 if (currentMove == 1) {
                     this.announceWinner(id);
-                    // Send some return statement with the announcement
+                    return "Game over";
                 }
                 else if(currentMove == -1) {
                     this.announceTie();
-                    // Send some return statement with the announcement
+                    return "Game over";
                 }
+
                 turnOrder[1] = false;
                 turnOrder[0] = true;          
             }
@@ -53,12 +59,11 @@ function Play(p1, p2) {
         },
 
         announceWinner: function(id) {
-            // return results to game interface
-            console.log("Generic win message")
+            console.log({id})
+            
         },
 
         annountTie: function() {
-            // return results to game interface
             console.log("Generic tie message")
         },
 
@@ -111,23 +116,19 @@ function Gameboard() {
             
             for (let i = 0; i < 3; i++) {
                 if (board[0][i] == id && board[1][i] == id && board[2][i] == id) {
-                    //console.log("column ",{i}, " won");
                     return id;
                 }
 
                 if (board[i][0] == id && board[i][1] == id && board[i][2] == id) {
-                    //console.log("row ", {i}, " won")
                     return id;
                 }
             }
             
             if (board[0][0] == id && board[1][1] == id && board[2][2] == id) {
-                //console.log("1st diagnol win") 
                 return id;
             }
 
             if (board[0][2] == id && board[1][1] == id && board[2][0] == id) {
-                //console.log("2nd diagnol win")
                 return id;
             }
         },
@@ -146,14 +147,14 @@ function Player(name, id) {
          * @returns 
          */
         getName: function() {
-            return name;
+            return this.name;
         }, 
         /**
          * 
          * @returns 
          */
         getId: function() {
-            return id;
+            return this.id;
         },
     }
 }
