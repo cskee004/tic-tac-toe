@@ -1,19 +1,20 @@
-const start = TicTacToe();
+const start = TicTacToe()
+const startButton = document.querySelector(".start-button");
+startButton.addEventListener("click", start.gameState, false);
+
 
 /**
  * 
  * @param {*} event - 
  */
 function TicTacToe(event) {
-    let game = Play();
-    let turn = 0;
 
-    const startButton = document.querySelector(".start-button");
+    //const startButton = document.querySelector(".start-button");
     const resetButton = document.querySelector(".reset-button");
     const gameButtons = document.querySelectorAll("#cell");
 
-    startButton.addEventListener("click", gameState, false);
-    resetButton.addEventListener("click", gameState, false);
+    //startButton.addEventListener("click", gameState, false);
+    resetButton.addEventListener("click", gameReset, false);
     gameButtons.forEach(element => {
         element.addEventListener("click", boardInput, false);
     });
@@ -27,8 +28,10 @@ function TicTacToe(event) {
     
         const row = event.target.getAttribute("data-rowIndex");
         const col = event.target.getAttribute("data-colIndex");
+
+        let currentGame = this.createGame;
         
-        game.playControl(row, col);
+        currentGame.playControl(row, col);
         turn++;
         
         for (let cell of gameButtons) {
@@ -52,25 +55,31 @@ function TicTacToe(event) {
      * 
      * @param {*} event Represents the start or reset button being clicked by the user.
      */
-    function gameState(event) {
-        const state = event.target.getAttribute("class");
-
-        if (state == "start-buton") {
-            const playerOne = document.querySelector("#p1-name").value;
-            const playerTwo = document.querySelector("#p2-name").value;
-            console.log({playerOne});
-            console.log({playerTwo});
-            game = Play();
-            turn = 0;
-        }
-        else {
-            game = null;
-            turn = 0;
-        }
+    function gameStart(event) {
         
-}
+        const playerOne = document.querySelector("#p1-name").value;
+        const playerTwo = document.querySelector("#p2-name").value;
+        console.log({playerOne});
+        console.log({playerTwo});
+        let game = this.createGame;
+        turn = 0;     
+    }
 
+    function gameReset(event) {
+        game = null;
+        turn = 0;
+    }
 
+    return {
+        createGame: function() {
+            let game = Play();
+            return game;
+        },
+
+        setGame: function(game) {
+            this.game = game;
+        }
+    }
 
 }
 
