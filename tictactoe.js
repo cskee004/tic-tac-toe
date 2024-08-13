@@ -2,8 +2,8 @@
 //--------------------------------------------------------------------------->>
 /**
  * The Play class is responsible for controlling the flow of the game. The input method receives coordinates
- * that indicate which of the nine cells was selected. The inputs represent a game button or one of the nine cells that make up the play area. 
- * If playControl receives an input, the turn order is first checked, and then the current player id and cell s sent to Gameboard. 
+ * that indicate which of the nine cells was selected. The inputs represent one of the nine cells that make up the play area. 
+ * If playControl receives an input, the turn order is first checked, and then the current player id and cell is passed to Gameboard. 
  * 
  * @return some generic game ending message 
  */
@@ -19,16 +19,22 @@ function Play(xName, oName) {
         /**
          * The input method receives (row, col) of the selected cell. The move 
          * is passed to the Gameboard class. 
-         * If the players id is returned from markBoard, they won. 
-         * If -1 is returned, the game ended in a tie.
          * 
          * @param {*} row - The selected cell row 
          * @param {*} col - The selected cell column 
          */
         playControl: function(row, col) {
 
+            const r = row;
+            const c = col;
+
+            const cell = document.querySelector(`[data-rowIndex="${r}"][data-colIndex="${c}"]`);
+            
+
             if (turnOrder[0] == true) {
                 let currentPlayer = board.markCell(row, col, 0);
+                cell.innerHTML = "X";
+                cell.setAttribute('id', "X");
                 
                 if (currentPlayer == 0) {
                     this.announceWinner(id);
@@ -40,6 +46,8 @@ function Play(xName, oName) {
             }
             else if (turnOrder[1] == true) {
                 let currentMove = board.markCell(row, col, 1);
+                cell.innerHTML = "O"
+                cell.setAttribute('id', "O");
                 
                 if (currentMove == 1) {
                     this.announceWinner(id);
@@ -139,7 +147,6 @@ function Player(name, id) {
     
     this.name = name;
     this.id = id;
-    let wins = 0;
 
     return {
         /**

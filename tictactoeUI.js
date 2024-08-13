@@ -21,7 +21,7 @@ function TicTacToe(event) {
     const gameButtons = document.querySelectorAll(".cell");
     gameButtons.forEach(element => {
         element.addEventListener("click", boardInput, false);
-        element.setAttribute('id', "on");
+        //element.setAttribute('id', "on");
     });
     //--------------------------------------------------------------------------->>
     /**
@@ -46,13 +46,6 @@ function TicTacToe(event) {
         for (let cell of gameButtons) {
             if (cell == event.target) {
                 cell.removeEventListener("click", boardInput, false);
-                event.target.setAttribute('id', "off");
-                if (turn % 2 == 1) {
-                    event.target.innerHTML = "X";
-                }
-                else {
-                    event.target.innerHTML = "O";
-                }
             }
         }
     }
