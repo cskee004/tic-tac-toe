@@ -51,11 +51,11 @@ function Play(xName, oName) {
                 
                 if (currentMove == 1) {
                     this.announceWinner(id);
-                    return "Game over";
+                    // return "Game over";
                 }
                 else if(currentMove == -1) {
                     this.announceTie();
-                    return "Game over";
+                    // return "Game over";
                 }
 
                 turnOrder[1] = false;
@@ -68,12 +68,20 @@ function Play(xName, oName) {
 
         announceWinner: function(id) {
             console.log({id})
-            
+            const results = document.querySelector('.game-updates');
+            results.innerHTML = id + " has won the game!"
+
         },
 
         annountTie: function() {
             console.log("Generic tie message")
+            const results = document.querySelector('game-updates');
+            results.innerHTML = "Game ended in a tie"
         },
+
+        getPlayers: function() {
+            return players;
+        }
 
     }
 }
@@ -154,14 +162,14 @@ function Player(name, id) {
          * @returns 
          */
         getName: function() {
-            return this.name;
+            return name;
         }, 
         /**
          * 
          * @returns 
          */
         getId: function() {
-            return this.id;
+            return id;
         },
     }
 }

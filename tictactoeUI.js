@@ -37,7 +37,7 @@ function TicTacToe(event) {
         turn++;
 
         if (results == "Game over") {
-            console.log("Game over signal");
+            console.log("Game over signal to turn off gameboard");
             // Prompt with results
             // Once clicked, reload page. 
 

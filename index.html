@@ -9,18 +9,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./node_modules/modern-normalize/modern-normalize.css">
         <link rel="stylesheet" href="./style.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        </style>
     </head>
     <body>
         <div class="content-wrapper">
             <div class="game-bar">
+                <header>Tic Tac Toe</header>
+                <p class="game-updates">game updates go here</p>
+            </div>
+            <div class="side-bar">
                 <form action="" method="get" class="game-form">
                     <div class="form-row">
-                        <label for="p1-name">Player 1 Name</label>
-                        <input id="p1-name" name="p1-name" type="text" autocomplete="off" pattern="[a-zA-Z0-9]+">
+                        <label for="p1-name">Player 1 Name</label><br>
+                        <input id="p1-name" name="p1-name" type="text" autocomplete="off" placeholder="Enter name then click start" pattern="[a-zA-Z0-9]+">
                     </div>
                     <div class="form-row">
-                        <label for="p2-name">Player 2 Name</label>
-                        <input id="p2-name" name="p2-name" type="text" autocomplete="off" pattern="[a-zA-Z0-9]+">
+                        <label for="p2-name">Player 2 Name</label><br>
+                        <input id="p2-name" name="p2-name" type="text" autocomplete="off" placeholder="Enter name then click start" pattern="[a-zA-Z0-9]+">
                     </div>
                 </form>
 
@@ -35,9 +42,7 @@
                     </div>
                     
                 </div>
-            </div>
-            <div class="side-bar">
-                
+
             </div>
             <div class="game-board">
                 <div class="cell" id="" data-rowIndex="0" data-colIndex="0"></div>
