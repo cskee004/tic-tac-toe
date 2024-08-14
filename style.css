@@ -7,33 +7,28 @@ html {
 }
 
 .content-wrapper {
-    display: grid;
-    grid-template-rows: 10% 90%;
-    grid-template-columns: 20% 80%;
     height: 100vh;
-    width: 100%;
-    justify-content: center;
     padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 5rem 1fr;
+
 }
 
 .game-bar {
-    grid-column: 2 / 3;
-    width: 800px;
-    display: grid;
-    justify-content: center;    
+    grid-column: 1 / 3;
+    
+    
+        
 }
 
 .side-bar {
-    height: 100vh;
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    width: 300px;
     
     
 }
 
 .button-container {
-    grid-row: 1 / 2;
+    
     display: flex;
     margin-top: 20px;
     gap: 1rem;
@@ -42,7 +37,7 @@ html {
 
 
 .game-form {
-    grid-row: 1 / 2;
+    
 
 }
 
@@ -55,12 +50,12 @@ html {
 .form-row input[type='text'] {
     border: 1px solid black;
     border-radius: 5px;
-    width: 90%;
+    width: 60%;
     padding: 7px;
 }
 
-.game-board {
-    grid-column: 2 / 3;
+.game-board, #active {
+    
     background-color: #252422;
     width: 800px;
     display: grid;
@@ -71,6 +66,7 @@ html {
 
 .game-board .cell {
     border: 3px solid #ccc5b9;
+    background-color: #403d39;
     font-size: 150px;
     display: flex;
     justify-content: center;
@@ -78,24 +74,19 @@ html {
     
 }
 
-.cell:hover {
-    background-color: #403d39;
+#X, #O {
+    color: #ccc5b9;
+    background-color: #252422;
 }
 
-#X {
-    color: #ccc5b9;
-}
 
-#O {
-    color: #ccc5b9;
-}
 
 button {
     background-color: #eb5e28;
     border-radius: 3px;
     display: inline block;
     font-size: 18px;
-    padding: 6px 24px;
+    padding: 6px 12px;
     text-decoration: none;
     cursor: pointer;
     
@@ -106,4 +97,9 @@ button:hover {
 button:active {
 	position:relative;
 	top:1px;
+}
+
+#game-over {
+    color: #eb5e28;
+    font-size: 24px;
 }

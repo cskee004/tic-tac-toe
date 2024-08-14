@@ -17,17 +17,17 @@
         <div class="content-wrapper">
             <div class="game-bar">
                 <header>Tic Tac Toe</header>
-                <p class="game-updates">game updates go here</p>
+                <p class="game-updates"></p>
             </div>
             <div class="side-bar">
                 <form action="" method="get" class="game-form">
                     <div class="form-row">
                         <label for="p1-name">Player 1 Name</label><br>
-                        <input id="p1-name" name="p1-name" type="text" autocomplete="off" placeholder="Enter name then click start" pattern="[a-zA-Z0-9]+">
+                        <input id="p1-name" name="p1-name" type="text" autocomplete="off" placeholder="Player name" pattern="[a-zA-Z0-9]+" required>
                     </div>
                     <div class="form-row">
                         <label for="p2-name">Player 2 Name</label><br>
-                        <input id="p2-name" name="p2-name" type="text" autocomplete="off" placeholder="Enter name then click start" pattern="[a-zA-Z0-9]+">
+                        <input id="p2-name" name="p2-name" type="text" autocomplete="off" placeholder="Player name" pattern="[a-zA-Z0-9]+" required>
                     </div>
                 </form>
 
@@ -42,6 +42,7 @@
                     </div>
                     
                 </div>
+                <p>Press start after names are entered. Press reset to clear board. Game results are posted above.</p>
 
             </div>
             <div class="game-board">
