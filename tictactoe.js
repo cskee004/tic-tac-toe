@@ -26,7 +26,6 @@ function Play(xName, oName) {
             const cell = document.querySelector(`[data-rowIndex="${r}"][data-colIndex="${c}"]`);
             
             if (turnOrder[0] == true) {
-                console.log(xName)
                 let currentPlayer = board.markCell(row, col, 0);
                 cell.innerHTML = "X";
                 cell.setAttribute('id', "X");
@@ -40,7 +39,6 @@ function Play(xName, oName) {
                 turnOrder[1] = true;
             }
             else if (turnOrder[1] == true) {
-                console.log(oName)
                 let currentMove = board.markCell(row, col, 1);
                 cell.innerHTML = "O"
                 cell.setAttribute('id', "O");
@@ -59,8 +57,6 @@ function Play(xName, oName) {
                 turnOrder[0] = true;          
             }
 
-            let tempBoard = board.getBoard();
-            console.table(tempBoard);
         },
     }
 }
