@@ -4,7 +4,7 @@ The Tic Tac Toe project is a simple implementation of the classic game, designed
 
 **Link to project:** https://cskee004.github.io/tic-tac-toe/
 
-![screenshot](./screenshot.jpeg)
+![screenshot](tic-tac-toe/screenshot.jpeg)
 
 ## How It's Made:
 
