@@ -1,3 +1,7 @@
+### Acknowledgement
+
+Thank you to the creators of the Odin Project for putting together a free cirriculum for learning web development.
+
 # Tic Tac Toe
 
 The Tic Tac Toe project is a simple implementation of the classic game, designed to learn JavaScript factory functions. Two players can enter their names, press the start button, and then take turns selecting cells. The game checks for winning and tie conditions, and updates the players with the result in the upper right-hand corner. The game can be reset by clicking the reset button.
