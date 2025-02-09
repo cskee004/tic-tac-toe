@@ -26,7 +26,3 @@ This phase of the project began with creating a 3x3 grid of elements and attachi
 - Add a Player class that can track names and id
 - Add best out of 3 or 5 game modes
 - Add a running scoreboard for multi game mode
-
-## Lessons Learned:
-
-Seeing my code in an actual working interactive application was cool. This project built on the foundation I already had with JavaScript and gave me more tools to create new things.
